@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Hello</h1>
+<p>You have {{ contracts }} contracts!</p>
+
+<div>
+    <h2>My Data</h2>
+
+    <table>
+        <tr>
+            <th>Nummer</th>
+            <th>Vorgangsart</th>
+            <th>Betreff</th>
+            <th>Kunde</th>
+            <th>Betrag</th>
+        </tr>
+        <tr>
+            <td>{{ myData.nummer }}</td>
+            <td>{{ myData.vorgangsart }}</td>
+            <td>{{ myData.betreff }}</td>
+            <td>{{ myData.kunde }}</td>
+            <td>{{ myData.betrag }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
