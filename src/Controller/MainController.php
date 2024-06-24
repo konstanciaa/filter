@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\DataRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -9,21 +10,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class MainController extends AbstractController
 {
     #[Route('/')]
-    public function homepage(): Response
+    public function homepage(DataRepository $dataRepository): Response
     {
-        $contracts = 150;
+        $contracts = $dataRepository->findAll();
 
-        $myData = [
-            'nummer' => 12345,
-            'vorgangsart' => 'Transportrechnung',
-            'betreff' => 'Test Rechnung',
-            'kunde' => 'DB',
-            'betrag' => 235,
-        ];
-        
+        $myData = $contracts[array_rand($contracts)];
+
         return $this->render('main/homepage.html.twig', [
-            'contracts' => $contracts,
             'myData' => $myData,
+            'contracts' => $contracts,
         ]);
     }
 }

@@ -2,10 +2,17 @@
 
 {% block body %}
 <h1>Hello</h1>
-<p>You have {{ contracts }} contracts!</p>
+<p>You have {{ contracts|length }} contracts!</p>
 
 <div>
     <h2>My Data</h2>
+
+    <label for="art"></label>
+    <select name="art" id="art">
+        <option value="all">Show All</option>
+        <option value="transportrechnung">Transportrechnung</option>
+        <option value="transportgutschrift">Transportgutschrift</option>
+    </select>
 
     <table>
         <tr>
