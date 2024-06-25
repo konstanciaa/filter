@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FinanzController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Finanzbuchhaltung</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.vorgangsart) }}
+        <button type="submit">Filter</button>
+    {{ form_end(form) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/annakonstantinova/filter/src/Controller/FinanzController.php</code></li>
-        <li>Your template at <code>/Users/annakonstantinova/filter/templates/finanz/index.html.twig</code></li>
-    </ul>
-</div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nummer</th>
+                <th>Vorgangsart</th>
+                <th>Betreff</th>
+                <th>Kunde</th>
+                <th>Betrag</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fin in finanz %}
+                <tr>
+                    <td>{{ fin.id }}</td>
+                    <td>{{ fin.nummer }}</td>
+                    <td>{{ fin.vorgangsart }}</td>
+                    <td>{{ fin.betreff }}</td>
+                    <td>{{ fin.kunde }}</td>
+                    <td>{{ fin.betrag }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
