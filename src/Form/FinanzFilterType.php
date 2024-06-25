@@ -2,11 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Finanzbuchhaltung;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FinanzFilterType extends AbstractType
 {
@@ -19,14 +17,7 @@ class FinanzFilterType extends AbstractType
                     'Transportgutschrift' => 'transportgutschrift',
                 ],
                 'required' => false,
-                'placeholder' => 'Filter by',
+                'placeholder' => 'Show all',
             ]);
     }
-
-    // public function configureOptions(OptionsResolver $resolver): void
-    // {
-    //     $resolver->setDefaults([
-    //         'data_class' => Finanzbuchhaltung::class,
-    //     ]);
-    // }
 }

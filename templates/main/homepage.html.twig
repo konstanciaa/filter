@@ -1,34 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Hello</h1>
-<p>You have {{ contracts|length }} contracts!</p>
+    <div class="container mt-5">
+        <h1>Finanzbuchhaltung</h1>
 
-<div>
-    <h2>My Data</h2>
+        {{ form_start(form, {'attr': {'class': 'd-flex align-items-center', 'id': 'filterForm'}}) }}
+            <div class="form-group mb-2 mr-3">
+                {{ form_label(form.vorgangsart, null, {'label_attr': {'class': 'mr-2 font-weight-bold'}}) }}
+                {{ form_widget(form.vorgangsart, {'attr': {'class': 'custom-select', 'onchange': 'submitForm()'}}) }}
+            </div>
+            
+        {{ form_end(form) }}
 
-    <label for="art"></label>
-    <select name="art" id="art">
-        <option value="all">Show All</option>
-        <option value="transportrechnung">Transportrechnung</option>
-        <option value="transportgutschrift">Transportgutschrift</option>
-    </select>
-
-    <table>
-        <tr>
-            <th>Nummer</th>
-            <th>Vorgangsart</th>
-            <th>Betreff</th>
-            <th>Kunde</th>
-            <th>Betrag</th>
-        </tr>
-        <tr>
-            <td>{{ myData.nummer }}</td>
-            <td>{{ myData.vorgangsart }}</td>
-            <td>{{ myData.betreff }}</td>
-            <td>{{ myData.kunde }}</td>
-            <td>{{ myData.betrag }}</td>
-        </tr>
-    </table>
-</div>
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Nummer</th>
+                    <th>Vorgangsart</th>
+                    <th>Betreff</th>
+                    <th>Kunde</th>
+                    <th>Betrag</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fin in finanz %}
+                    <tr>
+                        <td>{{ fin.nummer }}</td>
+                        <td>{{ fin.vorgangsart }}</td>
+                        <td>{{ fin.betreff }}</td>
+                        <td>{{ fin.kunde }}</td>
+                        <td>{{ fin.betrag|number_format(2, ',', '.') }} €</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function submitForm() {
+            document.getElementById('filterForm').submit();
+        }
+    </script>
 {% endblock %}

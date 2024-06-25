@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class FinanzController extends AbstractController
 {
-    #[Route('/finanz', name: 'app_finanz')]
+    #[Route('/')]
     public function index(Request $request, FinanzbuchhaltungRepository $finanzbuchhaltungRepository): Response
     {
         $form = $this->createForm(FinanzFilterType::class);
@@ -30,7 +30,7 @@ class FinanzController extends AbstractController
             $finanz = $finanzbuchhaltungRepository->findAll();
         }
 
-        return $this->render('finanz/index.html.twig', [
+        return $this->render('main/homepage.html.twig', [
             'form' => $form->createView(),
             'finanz' => $finanz,
         ]);

@@ -26,7 +26,7 @@ class Finanzbuchhaltung
     private ?string $kunde = null;
 
     #[ORM\Column]
-    private ?int $betrag = null;
+    private ?float $betrag = null;
 
     public function getId(): ?int
     {
@@ -81,12 +81,12 @@ class Finanzbuchhaltung
         return $this;
     }
 
-    public function getBetrag(): ?int
+    public function getBetrag(): ?float
     {
         return $this->betrag;
     }
 
-    public function setBetrag(int $betrag): static
+    public function setBetrag(float $betrag): static
     {
         $this->betrag = $betrag;
 
